@@ -9,6 +9,7 @@ use rsa::pkcs1::DecodeRsaPublicKey;
 use rsa::pkcs1v15::Signature as ExternalSignature;
 use rsa::{BigUint, RsaPublicKey as ExternalPublicKey};
 use rsa::{Pkcs1v15Sign, PublicKey};
+pub use base64ct::{Base64UrlUnpadded, Encoding};
 
 #[derive(Clone)]
 pub struct RSAPublicKey(pub ExternalPublicKey);
@@ -65,9 +66,8 @@ impl RSASignature {
 #[cfg(test)]
 mod test {
     use crate::hash::{HashFunction, Sha256};
-    use crate::rsa::{RSAPublicKey, RSASignature};
-    use base64ct::{Base64UrlUnpadded, Encoding};
-
+    use crate::rsa::{RSAPublicKey, RSASignature, Base64UrlUnpadded, Encoding};
+    
     #[test]
     fn jwt_test() {
         // Test vector from with RFC 7515 section A.2.1.
